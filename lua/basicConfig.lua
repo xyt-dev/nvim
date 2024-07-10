@@ -50,7 +50,11 @@ vim.opt.inccommand = 'split' -- ?
 
 vim.opt.cursorline = true
 
-vim.opt.scrolloff = 20
+vim.opt.scrolloff = 15
+
+vim.opt.tabstop = 2       -- 一个 Tab 显示为 2 个空格
+vim.opt.shiftwidth = 2    -- 自动缩进时使用 2 个空格
+vim.opt.expandtab = true  -- 用空格替代 Tab
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
