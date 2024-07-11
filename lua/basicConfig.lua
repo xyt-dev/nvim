@@ -78,12 +78,12 @@ vim.keymap.set('n', 's', '', { desc = '' })
 vim.keymap.set('n', 'sh', ':split<Return>', { desc = 'Split' })
 vim.keymap.set('n', 'sv', ':vsplit<Return>', { desc = 'Vertical Split' })
 
+vim.keymap.set('n', '<leader>c', ':bd<Return>', { desc = 'Close buffer' })
+
 -- TODO:
 -- vim.keymap.set('n', '<tab>', ':tabnext<Return>', { desc = 'Next tab' })
 -- vim.keymap.set('n', '<S-tab>', ':tabprev<Return>', { desc = 'Prev tab' })
 
--- vim.keymap.set('n', '<leader>c', ':bd<Return>', { desc = 'Close buffer' })
---
 -- vim.keymap.set('n', '<C-S-h>', '<C-w><', { desc = 'Resize window <' })
 -- vim.keymap.set('n', '<C-S-l>', '<C-w>>', { desc = 'Resize window >' })
 -- vim.keymap.set('n', '<C-S-k>', '<C-w>+', { desc = 'Resize window +' })

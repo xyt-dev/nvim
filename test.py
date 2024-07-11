@@ -1,1 +1,3 @@
-import os
+def a():
+    print("wow")
+a
