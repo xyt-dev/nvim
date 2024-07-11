@@ -286,6 +286,11 @@ require('lazy').setup({
           function(server_name)
             local server = servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            -- server.root_dir = function() -- (可传入参数 fname)
+            --   -- root_dir 设置为当前工作目录
+            --   print("Working directory:", vim.loop.cwd())
+            --   return vim.loop.cwd()
+            -- end
             require("lspconfig")[server_name].setup(server)
           end
         }
@@ -299,7 +304,15 @@ require('lazy').setup({
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
       -- Document existing key chains
-      require('which-key').register {} -- Must have, at least '{}'
+      require('which-key').register {
+        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+        ['<leader>e'] = { name = 'Neotree', _ = 'which_key_ignore' },
+      } -- Must have register, at least 'register {}'
     end
   },
   {
@@ -466,3 +479,22 @@ require('lazy').setup({
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- https://github.com/xyt-dev/nvim/
