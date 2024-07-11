@@ -1,0 +1,5 @@
+TODO:
+1. lsp 没有加载整个工作区导致references显示不全？
+2. home page
+3. bottom bar config
+

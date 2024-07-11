@@ -455,8 +455,13 @@ require('lazy').setup({
       require('toggleterm').setup()
       vim.keymap.set('n', '<C-t>', ':ToggleTerm direction=float<CR>', { desc = "Toggle terminal" })
     end
-  }
-
+  },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    -- See `:help ibl`
+    main = 'ibl', -- avoid version problem
+    opts = {},
+  },
 })
 
 
