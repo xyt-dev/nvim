@@ -1,1 +1,2 @@
-# nvim_config
+# My neovim config
+The Best Neovim Config.
