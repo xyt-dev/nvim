@@ -1,2 +1,2 @@
 # My neovim config
-The Best Neovim Config.
+The best neovim configuration!

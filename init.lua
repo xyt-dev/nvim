@@ -448,6 +448,13 @@ require('lazy').setup({
       vim.keymap.set('n', ']b', ':BufferLineCycleNext<CR>', { desc = "Next Buffer" })
       vim.keymap.set('n', '[b', ':BufferLineCyclePrev<CR>', { desc = "Prev Buffer" })
     end,
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    config = function ()
+      require('toggleterm').setup()
+      vim.keymap.set('n', '<C-t>', ':ToggleTerm direction=float<CR>', { desc = "Toggle terminal" })
+    end
   }
 
 })
