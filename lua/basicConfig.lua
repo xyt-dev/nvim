@@ -18,7 +18,7 @@ vim.opt.relativenumber = true
 
 vim.opt.mouse = 'a'
 
-vim.opt.showmode = true
+vim.opt.showmode = false -- no need with statusline plugin (mini.statusline)
 
 vim.opt.breakindent = true -- ?
 vim.opt.showbreak = '↪ '
@@ -69,6 +69,25 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<C-s>', ':w<Return>', { desc = 'Save' })
+
+vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { desc = 'Select all' })
+
+vim.keymap.set('n', 's', '', { desc = '' })
+vim.keymap.set('n', 'sh', ':split<Return>', { desc = 'Split' })
+vim.keymap.set('n', 'sv', ':vsplit<Return>', { desc = 'Vertical Split' })
+
+-- TODO:
+-- vim.keymap.set('n', '<tab>', ':tabnext<Return>', { desc = 'Next tab' })
+-- vim.keymap.set('n', '<S-tab>', ':tabprev<Return>', { desc = 'Prev tab' })
+
+-- vim.keymap.set('n', '<leader>c', ':bd<Return>', { desc = 'Close buffer' })
+--
+-- vim.keymap.set('n', '<C-S-h>', '<C-w><', { desc = 'Resize window <' })
+-- vim.keymap.set('n', '<C-S-l>', '<C-w>>', { desc = 'Resize window >' })
+-- vim.keymap.set('n', '<C-S-k>', '<C-w>+', { desc = 'Resize window +' })
+-- vim.keymap.set('n', '<C-S-j>', '<C-w>-', { desc = 'Resize window -' })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
