@@ -520,12 +520,26 @@ require('lazy').setup({
         highlight = {
             -- ...
         },
-    }
+      }
     end
   },
   { -- It works with: astro glimmer handlebars html javascript jsx markdown php rescript svelte tsx twig typescript vue xml
     'windwp/nvim-ts-autotag', -- < > < /> -- based on treesitter?
     opts = {},
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
 })
+
+
+
+
+
 -- https://github.com/xyt-dev/nvim/

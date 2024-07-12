@@ -10,7 +10,6 @@ void a() {
 
 int main() {
   std::cout << "wow" << std::endl;
-  a();
   return 0;
 }
 
