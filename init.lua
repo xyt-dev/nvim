@@ -543,17 +543,54 @@ require('lazy').setup({
     end,
     ft = { "markdown" },
   },
+  {
+    "OXY2DEV/markview.nvim",
+    ft = { "markdown" },  -- should be 'markdown', not 'md'
+    opts = {},
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-tree/nvim-web-devicons"
+    },
+  },
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      window = {
+        width = .60  -- %60
+      },
+      on_open = function(win)  -- 保持 bufferline 可见
+        local view = require("zen-mode.view")
+        local layout = view.layout(view.opts)
+        vim.api.nvim_win_set_config(win, {
+          width = layout.width,
+          height = layout.height - 1,
+        })
+        vim.api.nvim_win_set_config(view.bg_win, {
+          width = vim.o.columns,
+          height = view.height() - 1,
+          row = 1,
+          col = layout.col,
+          relative = "editor",
+        })
+      end,
+    },
+    config = function (_, opts)
+      require('zen-mode').setup(opts)
+      local function toggleZen()
+        local current_buf = vim.api.nvim_get_current_buf()
+        local buf_name = vim.api.nvim_buf_get_name(current_buf)
+        -- 检查当前缓冲区名称是否包含 "neotree", 在聚焦Neotree时使用ZenMode可能导致窗口相关问题
+        if buf_name:find("neo") and buf_name:find("tree") then
+          print("不要在Neotree中使用ZenMode")
+          return
+        end
+        require('zen-mode').toggle()
+      end
+      vim.keymap.set('n', '<F11>', toggleZen)
+      vim.keymap.set('i', '<F11>', toggleZen)
+    end
+  },
 })
-
-
-
-
-
-
-
-
-
-
 
 
 -- https://github.com/xyt-dev/nvim/
