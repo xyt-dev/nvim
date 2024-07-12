@@ -25,6 +25,13 @@
 require("basicConfig")
 require("neovide")
 
+-- zen-mode config
+-- fix: neotree 退出或进入文件会导致退出zen-mode
+-- 解决方法是在非手动退出时立刻自动重新进入zen-mode
+-- F11 toggle zen-mode 时设置 is_zen_manual_exit = true
+-- 之后会执行 on_open 或 on_close，on_open 则设置回false，on_close 则检测是否为true，否则立刻重新进入zen-mode
+local is_zen_manual_exit = false
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -564,7 +571,8 @@ require('lazy').setup({
       window = {
         width = .60  -- %60
       },
-      on_open = function(win)  -- 保持 bufferline 可见
+      on_open = function(win)
+        -- 保持 bufferline 可见
         local view = require("zen-mode.view")
         local layout = view.layout(view.opts)
         vim.api.nvim_win_set_config(win, {
@@ -578,7 +586,17 @@ require('lazy').setup({
           col = layout.col,
           relative = "editor",
         })
+        is_zen_manual_exit = false -- set to false when open
       end,
+      on_close = function ()
+        -- 检查是否是手动退出
+        if not is_zen_manual_exit then
+            -- 重新进入 Zen Mode
+            vim.defer_fn(function()
+                vim.cmd('ZenMode')
+            end, 0)
+        end
+      end
     },
     config = function (_, opts)
       require('zen-mode').setup(opts)
@@ -590,6 +608,7 @@ require('lazy').setup({
           print("不要在Neotree中使用ZenMode")
           return
         end
+        is_zen_manual_exit = true  -- open (set to false on open) or manual close
         require('zen-mode').toggle()
       end
       vim.keymap.set('n', '<F11>', toggleZen)

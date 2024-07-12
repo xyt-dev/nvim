@@ -99,3 +99,29 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+function GetCurrentWindowId()
+  return vim.api.nvim_get_current_win()
+end
+
+function GetCurrentBufId()
+  local win_id = vim.api.nvim_get_current_win();
+  return vim.api.nvim_win_get_buf(win_id);
+end
+
+function GetCurrentBufName()
+  return vim.api.nvim_buf_get_name(GetCurrentBufId());
+end
+
+function ListBuffers()
+    -- Get a list of all buffer IDs
+    local wins = vim.api.nvim_list_wins();
+    -- Iterate through each buffer
+    for _, win_id in ipairs(wins) do
+      -- Get the name of the buffer
+      local buf_id = vim.api.nvim_win_get_buf(win_id)
+      local buf_name = vim.api.nvim_buf_get_name(buf_id)
+      -- Print the buffer ID and name
+      print("Window Id: " .. win_id .. ", Buffer ID: " .. buf_id .. ", Buffer Name: " .. buf_name)
+    end
+end
