@@ -11,5 +11,7 @@ TODO:
     "file": "...",
   },
 2. home page
-3. bottom bar config
+3. config bottom bar
+4. colorizer #ffaacc
+5. fold code
 
