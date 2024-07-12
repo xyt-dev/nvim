@@ -264,6 +264,7 @@ require('lazy').setup({
         tsserver = {},
         html = {},
         cssls = {},
+        emmet_ls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -307,7 +308,7 @@ require('lazy').setup({
       require('which-key').setup()
       -- Document existing key chains
       require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+        -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
@@ -525,7 +526,13 @@ require('lazy').setup({
   },
   { -- It works with: astro glimmer handlebars html javascript jsx markdown php rescript svelte tsx twig typescript vue xml
     'windwp/nvim-ts-autotag', -- < > < /> -- based on treesitter?
-    opts = {},
+    opts = {
+      opts = {
+        enable_close = true, -- Auto close tags
+        enable_rename = true, -- Auto rename pairs of tags
+        enable_close_on_slash = true -- Auto close on trailing </
+      },
+    },
   },
   {
     "iamcco/markdown-preview.nvim",
