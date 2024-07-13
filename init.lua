@@ -568,6 +568,9 @@ require('lazy').setup({
     config = function ()
       require('toggleterm').setup()
       vim.keymap.set('n', '<C-t>', ':ToggleTerm direction=float<CR>', { desc = "Toggle terminal" })
+      vim.keymap.set('t', '<C-t>', function()
+        vim.api.nvim_input('<C-\\><C-n>:ToggleTerm<CR>')
+      end, { desc = "Toggle terminal" })
     end
   },
   { -- indent with '|'
