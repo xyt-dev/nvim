@@ -45,19 +45,28 @@ vim.opt.rtp:prepend(lazypath) -- enable require('lazy')
 -- See `:help lazy.nvim`
 require('lazy').setup({
   {
-    'catppuccin/nvim', -- download url
-    name = 'catppuccin', -- name in lazy
+    -- 'catppuccin/nvim', -- download url
+    -- name = 'catppuccin', -- name in lazy
+    "ellisonleao/gruvbox.nvim",
+    name = 'gruvbox',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
-      vim.cmd.colorscheme 'catppuccin'
+      vim.cmd.colorscheme 'gruvbox'
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
+      vim.api.nvim_set_hl(0, 'GruvboxGreen', { fg = '#ffcc99' })
+      vim.api.nvim_set_hl(0, 'GruvboxGreenBold', { fg = '#ffcc99', bold = true })
+      -- vim.api.nvim_set_hl(0, 'GruvboxAqua', { fg = '#ffcc99' })
     end,
   },
   {
-      'numToStr/Comment.nvim',
-      opts = { }
+    'numToStr/Comment.nvim',
+    opts = {}
+  },
+  {
+    'NvChad/nvim-colorizer.lua',
+    opts = {}
   },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     -- See `:help gitsigns` to understand what the configuration keys do
