@@ -58,15 +58,21 @@ require('lazy').setup({
       vim.api.nvim_set_hl(0, 'GruvboxGreen', { fg = '#ffcc99' })
       vim.api.nvim_set_hl(0, 'GruvboxGreenBold', { fg = '#ffcc99', bold = true })
       -- vim.api.nvim_set_hl(0, 'GruvboxAqua', { fg = '#ffcc99' })
+      vim.api.nvim_set_hl(0, 'SignColumn', { fg = '#ffcc99' })
+      vim.api.nvim_set_hl(0, 'FoldColumn', { fg = '#ffcc99' })
     end,
   },
   {
     'numToStr/Comment.nvim',
-    opts = {}
+    opts = {},
   },
   {
     'NvChad/nvim-colorizer.lua',
-    opts = {}
+    opts = {},
+  },
+  {
+    "petertriho/nvim-scrollbar",
+    opts = {},
   },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     -- See `:help gitsigns` to understand what the configuration keys do
@@ -357,6 +363,31 @@ require('lazy').setup({
     },
     keys = {
       { '<leader>e', ':Neotree toggle float<CR>', { desc = 'Toggle Neotree' } },
+    },
+    opts = {
+      popup_border_style = 'rounded',
+      filesystem = {
+        follow_current_file = true,  -- neotree 中跟随当前打开的文件
+        filtered_items = {
+          hide_dotfiles = true,  -- default is true
+        },
+        window = {
+          mappings = {
+            ["R"] = "refresh",  -- 刷新文件树
+            ["h"] = "navigate_up",  -- 设置 'h' 键为返回上级目录
+            ["l"] = function(state)  -- 使用 'l' 键进入文件夹并将其设为根目录
+              local node = state.tree:get_node()
+              if node.type == "directory" then
+              require('neo-tree.sources.filesystem').navigate(state, node:get_id())
+              end
+            end,
+            ["?"] = function(state)
+              local node = state.tree:get_node()
+              print(node.name)
+            end,
+          },
+        },
+      },
     },
   },
   { -- Collection of various small independent plugins/modules
