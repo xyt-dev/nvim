@@ -55,6 +55,10 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
     end,
   },
+  {
+      'numToStr/Comment.nvim',
+      opts = { }
+  },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     -- See `:help gitsigns` to understand what the configuration keys do
     'lewis6991/gitsigns.nvim',
@@ -65,8 +69,16 @@ require('lazy').setup({
         delete = { text = '_' },
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
+        untracked = { text = '┆' },
       },
     },
+    config = function (_, opts)
+      require('gitsigns').setup(opts)
+      local function diffthis()
+        require('gitsigns').diffthis('', { split = 'belowright' })
+      end
+      vim.keymap.set('n', 'dif', diffthis, { desc = 'git show diff' })
+    end
   },
   {
     "hrsh7th/nvim-cmp",
@@ -272,6 +284,7 @@ require('lazy').setup({
         html = {},
         cssls = {},
         emmet_ls = {},
+        tailwindcss = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -652,4 +665,5 @@ require('lazy').setup({
     end,
   },
 })
+
 -- https://github.com/xyt-dev/nvim/
