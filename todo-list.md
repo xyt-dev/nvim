@@ -16,6 +16,7 @@
 2. Neotree 切换回编辑区时无法保持ZenMode
   通过逻辑在非手动关闭时自动重新打开
 3. Scrollbar is moved in noevide along with the editing area
+4. Setting follow_current_file in neotree config has no effect
 
 ## TODO:
 1. Set keymap to switch the git-diff window open and close

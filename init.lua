@@ -67,6 +67,11 @@ require('lazy').setup({
     opts = {},
   },
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
     'NvChad/nvim-colorizer.lua',
     opts = {},
   },
@@ -367,23 +372,27 @@ require('lazy').setup({
     opts = {
       popup_border_style = 'rounded',
       filesystem = {
-        follow_current_file = true,  -- neotree 中跟随当前打开的文件
+        follow_current_file = { enabled = true },  -- TODO: have no effect?
         filtered_items = {
-          hide_dotfiles = true,  -- default is true
+          hide_dotfiles = false,  -- default is true
         },
         window = {
           mappings = {
             ["R"] = "refresh",  -- 刷新文件树
             ["h"] = "navigate_up",  -- 设置 'h' 键为返回上级目录
-            ["l"] = function(state)  -- 使用 'l' 键进入文件夹并将其设为根目录
+            ["l"] = function(state)  -- 使用 'l' 键进入文件夹/打开文件,并切换到该目录
               local node = state.tree:get_node()
               if node.type == "directory" then
-              require('neo-tree.sources.filesystem').navigate(state, node:get_id())
+                require('neo-tree.sources.filesystem').navigate(state, node:get_id())
+              elseif node.type == "file" then
+                vim.cmd('edit ' .. node.path)
+                local parent_dir = vim.fn.fnamemodify(node.path, ':h')
+                require('neo-tree.sources.filesystem').navigate(state, parent_dir)
               end
             end,
             ["?"] = function(state)
               local node = state.tree:get_node()
-              print(node.name)
+              print(node.path)
             end,
           },
         },
