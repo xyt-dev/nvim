@@ -367,12 +367,11 @@ require('lazy').setup({
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     keys = {
-      { '<leader>e', ':Neotree toggle float<CR>', { desc = 'Toggle Neotree' } },
+      { '<leader>e', ':Neotree toggle reveal_force_cwd float<CR>', { desc = 'Toggle Neotree' } },
     },
     opts = {
       popup_border_style = 'rounded',
       filesystem = {
-        follow_current_file = { enabled = true },  -- TODO: have no effect?
         filtered_items = {
           hide_dotfiles = false,  -- default is true
         },
