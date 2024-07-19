@@ -57,7 +57,7 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
       vim.api.nvim_set_hl(0, 'GruvboxGreen', { fg = '#ffcc99' })
       vim.api.nvim_set_hl(0, 'GruvboxGreenBold', { fg = '#ffcc99', bold = true })
-      -- vim.api.nvim_set_hl(0, 'GruvboxAqua', { fg = '#ffcc99' })
+      vim.api.nvim_set_hl(0, 'String', { fg = '#8ec07c', italic = true })
       vim.api.nvim_set_hl(0, 'SignColumn', { fg = '#ffcc99' })
       vim.api.nvim_set_hl(0, 'FoldColumn', { fg = '#ffcc99' })
     end,
@@ -620,15 +620,15 @@ require('lazy').setup({
     end,
     ft = { "markdown" },
   },
-  {
-    "OXY2DEV/markview.nvim",
-    ft = { "markdown" },  -- should be 'markdown', not 'md'
-    opts = {},
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
-    },
-  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   ft = { "markdown" },  -- should be 'markdown', not 'md'
+  --   opts = {},
+  --   dependencies = {
+  --       "nvim-treesitter/nvim-treesitter",
+  --       "nvim-tree/nvim-web-devicons"
+  --   },
+  -- },
   {
     "folke/zen-mode.nvim",
     opts = {
